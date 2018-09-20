@@ -9,26 +9,45 @@
         <script type="text/javascript" src="./js/accordion.js"></script>
     </head>
     <body>
-        <h1>Accordion demo page</h1>
-        <div id="my-accordion"></div>
+        <div class="page-header">
+            <h1>Accordion demo page</h1>
+            <p>This page contains 3 GAccordions.</p>
+            <p>The first one is direct child of the body element.</p>
+            <p>The second and third ones are in a fluid grid. Their width ratio changes depending on how large your screen is.</p>
+        </div>
+        <div id="my-accordion1"></div>
+        <div class="flex-row">
+            <div class="flex-col sm-col-4 md-col-4 lg-col-10">
+                <div id="my-accordion2"></div>
+            </div>
+            <div class="flex-col sm-col-4 md-col-8 lg-col-2">
+                <div id="my-accordion3"></div>
+            </div>
+        </div>
+        
         <script type="text/javascript">
         var options = {
-            container: 'my-accordion',
-            mainTitle: 'Main accordion title',
+            container: 'my-accordion1',
+            mainTitle: 'Full witdth',
             panels: [{
                 title: 'Title 1',
-                subtitle: 'Subtitle 1',
                 content: '<p>HTML content 1</p>'
             },{
                 title: 'Title 2',
                 subtitle: 'Subtitle 2',
-                content: '<p>HTML content 2</p>'
+                content: '<h4>Lorem Ipsum...</h4>   <p><b>Lorem ipsum dolor sit amet</b>, consectetur adipisci elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua.<br> <i>Ut enim ad minim veniam</i>, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur.</p><p>Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint obcaecat cupiditat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>'
             },{
                 title: 'Title 3',
                 subtitle: 'Subtitle 3',
                 content: '<p>HTML content 3</p>'
             }]
         };
+        var accordion = new GAccordion(options);
+        options.container='my-accordion2';
+        options.mainTitle='Responsive';
+        var accordion = new GAccordion(options);
+        options.container='my-accordion3';
+        options.mainTitle='Responsive';
         var accordion = new GAccordion(options);
         </script>
     </body>

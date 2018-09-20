@@ -1,35 +1,125 @@
+// GAccordion parameters
+  // Layout sizes
+  $g-accordion-margin: 30px 0 10px 0;
+  $g-accordion-main-title-height: 60px;
+  $g-accordion-main-title-vspacing: 1px;
+  $g-accordion-main-title-hpadding: 25px;
+  $g-accordion-item-closed-min-height: 50px;
+  $g-accordion-item-closed-max-height: 70px;
+  $g-accordion-item-open-max-height: 250px;
+  $g-accordion-item-hpadding: 25px;
+  $g-accordion-item-vertical-padding: 14px;
+  $g-accordion-item-closed-vspacing: 1px;
+  $g-accordion-item-open-vspacing: 30px;
+  $g-accordion-item-title-subtitle-spacing: 12px;
+  $g-accordion-item-content-vspacing: 25px;
+  $g-accordion-item-dropdown-padding: 25px;
+  
+  // Fonts 
+  $g-accordion-main-title-font-size: 18px;
+  $g-accordion-item-dropdown-font-size: 26px;
+  $g-accordion-item-title-font-weight: 600;
+  $g-accordion-item-open-title-font-size: 18px;
+  $g-accordion-item-close-title-font-size: 14px;
+  $g-accordion-item-subtitle-font-weight: 600;
+  $g-accordion-item-subtitle-font-size: 12px;
+  $g-accordion-item-content-font-size: 13px;
+  
+  // Colors etc.
+  $g-accordion-main-title-background: #fff;
+  $g-accordion-item-background: #fff;
+  $g-accordion-item-border-color: #e4e6e5;
+  $g-accordion-title-font-color:#333;
+  $g-accordion-item-dropdown-color: #0465ac;
+  $g-accordion-item-title-font-color: #0465ac;
+  $g-accordion-item-subtitle-font-color: #999;
+  $g-accordion-item-content-font-color:#333;
+  $g-item-shadow: 0px 2px 3px rgba(0,0,0,0.2);
+
+
+// GAccordion Helpers
+  // Animation
+  @mixin transition($property) {
+    -webkit-transistion: $property 1s cubic-bezier(0, 0.6, 0, 1);
+            transition: $property 1s cubic-bezier(0, 0.6, 0, 1);
+  }
+
+// GAccordion Style
 .g-accordion {
+  margin: $g-accordion-margin;
+  @include transition(font-size);
+  font-size: $g-accordion-item-content-font-size;
+  color: $g-accordion-title-font-color;
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  .main-title{
+    font-size: $g-accordion-main-title-font-size;
+    font-weight: $g-accordion-item-title-font-weight;
+    line-height: $g-accordion-main-title-height;
+    background-color: $g-accordion-main-title-background;
+    box-shadow: $g-item-shadow;
+    height: $g-accordion-main-title-height;
+    border-bottom: $g-accordion-item-closed-vspacing solid $g-accordion-item-border-color;
+    padding: 0 $g-accordion-main-title-hpadding;
+  }
   .item {
-    -webkit-transition: margin 1s cubic-bezier(0, 1.05, 0, 1) ;
-    transition: margin 1s cubic-bezier(0, 1.05, 0, 1) ;
-    margin: 25px 0px;
-    .item-header{
-      font-size: 18px;
-      font-weight: semibold;
-      height: 60px;
-      color: #0465ac;
+    @include transition(all);
+    max-height: $g-accordion-item-open-max-height;
+    overflow: hidden;
+    margin: $g-accordion-item-open-vspacing 0px;
+    padding: $g-accordion-item-vertical-padding $g-accordion-main-title-hpadding 0px $g-accordion-item-hpadding;
+    border-bottom: $g-accordion-item-closed-vspacing solid rgba(0,0,0,0.2);
+    background-color: $g-accordion-item-background;
+    box-shadow: $g-item-shadow;
+    .item-dropdown{
+      font-size: $g-accordion-item-dropdown-font-size;
+      cursor: pointer;
+      color: $g-accordion-item-dropdown-color;
+      float:right;
+      padding: 0 0 0 $g-accordion-item-dropdown-padding;
     }
-    .item-body {
-      -webkit-transition: max-height 1s cubic-bezier(0, 1.05, 0, 1) ;
-      transition: max-height 1s cubic-bezier(0, 1.05, 0, 1) ;
-      max-height: 300px;
-      display: block;  
-      overflow: hidden;
-      font-size: 12px;
-      font-weight: semibold;
-      color: #999;
+    .item-dropdown::before{
+      content: "keyboard_arrow_up";
+    }
+    .item-title{
+      @include transition(font-size);
+      font-weight: $g-accordion-item-title-font-weight;
+      font-size: $g-accordion-item-open-title-font-size;
+      color: $g-accordion-item-title-font-color;
+      cursor: pointer;
+      margin-bottom: $g-accordion-item-title-subtitle-spacing;
+    }
+    .item-subtitle{
+      font-weight: $g-accordion-item-subtitle-font-weight;
+      font-size: $g-accordion-item-subtitle-font-size;
+      margin-bottom: $g-accordion-item-vertical-padding;
+      color: $g-accordion-item-subtitle-font-color;
+    }
+    .item-content{
+      @include transition(all);
+      padding: ($g-accordion-item-content-vspacing - $g-accordion-item-vertical-padding) 0 $g-accordion-item-content-vspacing 0;
     }
   }
   
   .item.item-closed {
-    margin: 0px 0px;
-    .item-header{
-      font-size: 14px;
-      font-weight: semibold;
-      color: #0465ac;
+    margin: 0;
+    max-height: $g-accordion-item-closed-max-height;
+    .item-dropdown::before{
+      content: "keyboard_arrow_down";
     }
-    .item-body { 
-      max-height: 0px;
-    } 
+    .item-title{
+      font-size: $g-accordion-item-close-title-font-size;
+    }
+    .item-subtitle{
+      font-size: $g-accordion-item-subtitle-font-size;
+    }
+    .item-content{
+      height: 0;
+      padding: 0;
+      overflow: hidden;
+    }
   }
-}     
+}

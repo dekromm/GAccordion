@@ -9,4 +9,5 @@ Declare a div element and create a GAccordion object
 
 ## What to improve
 
-1. max-height overflow (should fix with js-measured height)
+1. error handling (both JS and HTML element overflow)
+2. max-height animation animation (should fix with js-measured height)

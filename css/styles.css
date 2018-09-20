@@ -1,4 +1,158 @@
-html * {
-    font-size: 1em;
-    font-family: Arial !important;
-}
+  * {
+    font: inherit;
+    margin: 0px;
+    padding: 0px;
+  }
+
+  body {
+    background-color: #f5f5f5;
+    font-family: sans-serif;
+  }
+  
+  .page-header {
+    background-color: #333333;
+    color: #FFFFFF;
+    height: 120px;
+    padding-left: 30px;
+    padding-top: 10px;
+  }
+  
+  .flex-row {
+    display: flex;
+    margin: 0 10px;
+  }
+  
+  .flex-col {
+    margin: 0 15px;
+  }
+  
+  .sm-col-1 {
+    flex-grow: 1;
+  }
+  
+  .sm-col-2 {
+    flex-grow: 2;
+  }
+  
+  .sm-col-3 {
+    flex-grow: 3;
+  }
+  
+  .sm-col-4 {
+    flex-grow: 4;
+  }
+  
+  .sm-col-5 {
+    flex-grow: 5;
+  }
+  
+  .sm-col-6 {
+    flex-grow: 6;
+  }
+  
+  .sm-col-7 {
+    flex-grow: 7;
+  }
+  
+  .sm-col-8 {
+    flex-grow: 8;
+  }
+  
+  @media all and (min-width: 1280px) {
+    .md-col-1 {
+      flex-grow: 1;
+    }
+  
+    .md-col-2 {
+      flex-grow: 2;
+    }
+  
+    .md-col-3 {
+      flex-grow: 3;
+    }
+  
+    .md-col-4 {
+      flex-grow: 4;
+    }
+  
+    .md-col-5 {
+      flex-grow: 5;
+    }
+  
+    .md-col-6 {
+      flex-grow: 6;
+    }
+  
+    .md-col-7 {
+      flex-grow: 7;
+    }
+  
+    .md-col-8 {
+      flex-grow: 8;
+    }
+  
+    .md-col-9 {
+      flex-grow: 9;
+    }
+  
+    .md-col-10 {
+      flex-grow: 10;
+    }
+  
+    .md-col-11 {
+      flex-grow: 11;
+    }
+  
+    .md-col-12 {
+      flex-grow: 12;
+    }
+  }
+  @media all and (min-width: 1366px) {
+    .lg-col-1 {
+      flex-grow: 1;
+    }
+  
+    .lg-col-2 {
+      flex-grow: 2;
+    }
+  
+    .lg-col-3 {
+      flex-grow: 3;
+    }
+  
+    .lg-col-4 {
+      flex-grow: 4;
+    }
+  
+    .lg-col-5 {
+      flex-grow: 5;
+    }
+  
+    .lg-col-6 {
+      flex-grow: 6;
+    }
+  
+    .lg-col-7 {
+      flex-grow: 7;
+    }
+  
+    .lg-col-8 {
+      flex-grow: 8;
+    }
+  
+    .lg-col-9 {
+      flex-grow: 9;
+    }
+  
+    .lg-col-10 {
+      flex-grow: 10;
+    }
+  
+    .lg-col-11 {
+      flex-grow: 11;
+    }
+  
+    .lg-col-12 {
+      flex-grow: 12;
+    }
+  }
