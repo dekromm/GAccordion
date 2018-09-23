@@ -106,6 +106,7 @@
   
   .item.item-closed {
     margin: 0;
+    min-height: $g-accordion-item-closed-min-height;
     max-height: $g-accordion-item-closed-max-height;
     .item-dropdown::before{
       content: "keyboard_arrow_down";

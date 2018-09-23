@@ -34,7 +34,31 @@ function GAccordion(options) {
         }
     }
 
-    // Instantiate DOM panels
+    /* Instantiate DOM panels in 3 steps
+        Target DOM Structure:
+        
+        <div id="my-accordion2" class="g-accordion"> // existing div to build into
+
+            <div class="main-title">{item.title}</div>
+
+            <div class="item item-closed"> // remove item-closed class to open an 
+            
+                <i class="material-icons item-dropdown"></i>
+
+                <h1 class="item-title">{item.title}</h1>
+
+                <h2 class="item-subtitle">{item.subtitle}</h2>
+
+                <div class="item-content">
+                    {item.content}
+                </div>
+            </div>
+            .
+            . repeat for other items
+            .
+        </div>
+    */
+    
     
     // 1/3 Container
     var DOMcontainer = document.getElementById(options.container);
@@ -42,48 +66,58 @@ function GAccordion(options) {
 
     // 2/3 Main Title (if any)
     if(options.mainTitle){
-        var mainTitle = document.createElement('div');
-        mainTitle.classList.add('main-title');
+        var mainTitle = GElement({
+            tagname: 'div',
+            classList: ['main-title'],
+            innerHTML: options.mainTitle
+        })
         DOMcontainer.appendChild(mainTitle);
-        mainTitle.innerHTML = '<h1>'+options.mainTitle+'</h1>';
     }
 
-    // 3/3 Panels
-    options.panels.forEach(panel => {
+    // 3/3 Accordion items
+    options.panels.forEach(item => {
+
         var children = []
+
         var dropdownButton = GElement({
             tagname: 'i',
             classList: ['material-icons', 'item-dropdown'],
             onclick: function(){toggle(domPanel)}
         });
         children.push(dropdownButton);
+
         var title = GElement({
             tagname: 'h1',
             classList: ['item-title'],
-            innerHTML: panel.title,
+            innerHTML: item.title,
             onclick: function(){toggle(domPanel)}
         });
         children.push(title);
-        if(panel.subtitle){
+
+        if(item.subtitle){
             var subtitle = GElement({
                 tagname: 'h2',
                 classList: ['item-subtitle'],
-                innerHTML: panel.subtitle
+                innerHTML: item.subtitle
             });
             children.push(subtitle);
         }
+
         var content = GElement({
             tagname: 'div',
             classList: ['item-content'],
-            innerHTML: panel.content
+            innerHTML: item.content
         });
         children.push(content);
+
         var domPanel = GElement({
             tagname: 'div',
             classList: ['item','item-closed'],
             children: children
         });
+
         DOMcontainer.appendChild(domPanel);
+        
     });
 }
 
