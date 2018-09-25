@@ -17,6 +17,7 @@
   
   // Fonts 
   $g-accordion-main-title-font-size: 18px;
+  $g-accordion-main-title-font-weight: 400;
   $g-accordion-item-dropdown-font-size: 26px;
   $g-accordion-item-title-font-weight: 600;
   $g-accordion-item-open-title-font-size: 18px;
@@ -57,7 +58,7 @@
   }
   .main-title{
     font-size: $g-accordion-main-title-font-size;
-    font-weight: $g-accordion-item-title-font-weight;
+    font-weight: $g-accordion-main-title-font-weight;
     line-height: $g-accordion-main-title-height;
     background-color: $g-accordion-main-title-background;
     box-shadow: $g-item-shadow;
