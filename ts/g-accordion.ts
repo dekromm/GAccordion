@@ -1,125 +1,101 @@
-/* Reusable Accordion Component
-    Example input options JSON:
-    {
-        container: 'my-accordion',              // Id of the DOM element to buil onto
-        mainTitle: 'Main accordion title',      // Optional: instantiate an Item in the Accordion to use as main title
-        panels: [{                              // Array of panels
-            title: 'Title 1',                   // Panel title
-            subtitle: 'Subtitle 1',             // Panel subtitle
-            content: '<p>HTML content 1</p>'    // Panel content
-        },{
-            title: 'Title 2',                   
-            subtitle: 'Subtitle 2',             
-            content: '<p>HTML content 2</p>'    
-        },{
-            title: 'Title 3',
-            subtitle: 'Subtitle 3',
-            content: '<p>HTML content 3</p>'
-        }]
-    }
-*/
-function GAccordion(options) {
-    // declare panels behaviour (toggle open/close state)
-    function toggle(element){
-        isClosed=false;
-        element.classList.forEach(className => {
-            if(className == 'item-closed'){
-                isClosed = true;
+interface GPanelOptions {
+    title: string,
+    subtitle: string,
+    content: string
+}
+
+class GPanel {
+    element: HTMLElement
+    constructor(options: GPanelOptions){
+
+        // declare panels behaviour (toggle open/close state)
+        function toggle(element: HTMLElement){
+            let isClosed: Boolean = false;
+            element.classList.forEach(className => {
+                if(className == 'item-closed'){
+                    isClosed = true;
+                }
+            });
+            if(isClosed){
+                element.classList.remove('item-closed');
+            } else {
+                element.classList.add('item-closed');
             }
-        });
-        if(isClosed){
-            element.classList.remove('item-closed');
-        } else {
-            element.classList.add('item-closed');
         }
-    }
-
-    /* Instantiate DOM panels in 3 steps
-        Target DOM Structure:
-        
-        <div id="my-accordion2" class="g-accordion"> // existing div to build into
-
-            <div class="main-title">{item.title}</div>
-
-            <div class="item item-closed"> // remove item-closed class to open an 
-            
-                <i class="material-icons item-dropdown"></i>
-
-                <h1 class="item-title">{item.title}</h1>
-
-                <h2 class="item-subtitle">{item.subtitle}</h2>
-
-                <div class="item-content">
-                    {item.content}
-                </div>
-            </div>
-            .
-            . repeat for other items
-            .
-        </div>
-    */
     
-    
-    // 1/3 Container
-    var DOMcontainer = document.getElementById(options.container);
-    DOMcontainer.classList.add('g-accordion');
+        let children = []
 
-    // 2/3 Main Title (if any)
-    if(options.mainTitle){
-        var mainTitle = GElement({
-            tagname: 'div',
-            classList: ['main-title'],
-            innerHTML: options.mainTitle
-        })
-        DOMcontainer.appendChild(mainTitle);
-    }
-
-    // 3/3 Accordion items
-    options.panels.forEach(item => {
-
-        var children = []
-
-        var dropdownButton = GElement({
+        let dropdownButton = GElement({
             tagname: 'i',
             classList: ['material-icons', 'item-dropdown'],
             onclick: function(){toggle(domPanel)}
         });
         children.push(dropdownButton);
 
-        var title = GElement({
+        let title = GElement({
             tagname: 'h1',
             classList: ['item-title'],
-            innerHTML: item.title,
+            innerHTML: options.title,
             onclick: function(){toggle(domPanel)}
         });
         children.push(title);
 
-        if(item.subtitle){
-            var subtitle = GElement({
+        if(options.subtitle){
+            let subtitle = GElement({
                 tagname: 'h2',
                 classList: ['item-subtitle'],
-                innerHTML: item.subtitle
+                innerHTML: options.subtitle
             });
             children.push(subtitle);
         }
 
-        var content = GElement({
+        let content = GElement({
             tagname: 'div',
             classList: ['item-content'],
-            innerHTML: item.content
+            innerHTML: options.content
         });
         children.push(content);
 
-        var domPanel = GElement({
+        let domPanel = GElement({
             tagname: 'div',
             classList: ['item','item-closed'],
             children: children
         });
-
-        DOMcontainer.appendChild(domPanel);
-        
-    });
+        this.element = domPanel;
+    }
 }
+
+
+interface GAccordionOptions {
+    container: string,  // id of DOM element to build onto
+    mainTitle?: string,
+    panels: [GPanelOptions]
+}
+
+class GAccordion {
+    panels: [GPanel]
+    constructor(options: GAccordionOptions) {
+    
+        let DOMcontainer = document.getElementById(options.container);
+        DOMcontainer.classList.add('g-accordion');
+    
+        if(options.mainTitle){
+            let maintitle = GElement({
+                tagname: 'div',
+                classList: ['main-title'],
+                innerHTML: options.mainTitle
+            });
+            DOMcontainer.appendChild(maintitle);
+        }
+    
+        for(let currentPanel in options.panels){
+            let p: GPanel = new GPanel(currentPanel);
+            DOMcontainer.appendChild(p.element);
+        }
+    }
+}
+
+
 
 
 /* Element Creator Helper Fuction
@@ -137,7 +113,7 @@ function GAccordion(options) {
 */
 
 function GElement(options){
-    element = document.createElement(options.tagname);
+    let element = document.createElement(options.tagname);
     if(options.innerHTML){
         element.innerHTML = options.innerHTML
     }

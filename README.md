@@ -1,6 +1,6 @@
 # GAccordion
 
-GAccordion is a reusable accordion component that depends on accordion.js and accordion.css.
+GAccordion is a reusable accordion component that depends on g-accordion.js and g-accordion.css.
 
 ## Getting started
 
