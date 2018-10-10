@@ -1,6 +1,6 @@
 # GAccordion
 
-GAccordion is a reusable accordion component that depends on accordion.js and accordion.css (accordion.scss).
+GAccordion is a reusable accordion component that depends on accordion.js and accordion.css.
 
 ## Getting started
 
@@ -36,6 +36,5 @@ Note that the value of `container` property must be the same as the `div`'s id.
 ## What to improve
 
 1. error handling (both JS and HTML element overflow)
-2. max-height animation animation (should fix with js-measured height)
+2. max-height animation (should fix with js-measured height)
 3. chevron alignment
-4. other similar stuff

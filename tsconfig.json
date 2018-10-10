@@ -1,0 +1,10 @@
+{
+    "files": [
+        "ts/g-accordion.ts"
+    ],
+    "compilerOptions": {
+        "noImplicitAny": true,
+        "strictNullChecks": true,
+        "target": "es5"
+    }
+}

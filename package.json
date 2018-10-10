@@ -1,0 +1,33 @@
+{
+  "name": "g-accordion",
+  "version": "1.0.0",
+  "description": "Accordion component written in typescript and scss",
+  "main": "ts/gaccordion.ts",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dekromm/GAccordion.git"
+  },
+  "keywords": [
+    "accordion",
+    "typescript",
+    "scss"
+  ],
+  "author": "Guido Gerosa",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/dekromm/GAccordion/issues"
+  },
+  "homepage": "https://github.com/dekromm/GAccordion#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-ruby-sass": "^3.0.0",
+    "gulp-typescript": "^5.0.0-alpha.3",
+    "typescript": "^3.1.2"
+  }
+}

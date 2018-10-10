@@ -3,80 +3,66 @@
   -webkit-transistion: font-size 1s cubic-bezier(0, 0.6, 0, 1);
   transition: font-size 1s cubic-bezier(0, 0.6, 0, 1);
   font-size: 13px;
-  color: #333;
-}
-.g-accordion * {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-.g-accordion .main-title {
-  font-size: 18px;
-  font-weight: 400;
-  line-height: 60px;
-  background-color: #fff;
-  box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.2);
-  height: 60px;
-  border-bottom: 1px solid #e4e6e5;
-  padding: 0 25px;
-}
-.g-accordion .item {
-  -webkit-transistion: all 1s cubic-bezier(0, 0.6, 0, 1);
-  transition: all 1s cubic-bezier(0, 0.6, 0, 1);
-  max-height: 250px;
-  overflow: hidden;
-  margin: 30px 0px;
-  padding: 14px 25px 0px 25px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-  background-color: #fff;
-  box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.2);
-}
-.g-accordion .item .item-dropdown {
-  font-size: 26px;
-  cursor: pointer;
-  color: #0465ac;
-  float: right;
-  padding: 0 0 0 25px;
-}
-.g-accordion .item .item-dropdown::before {
-  content: "keyboard_arrow_up";
-}
-.g-accordion .item .item-title {
-  -webkit-transistion: font-size 1s cubic-bezier(0, 0.6, 0, 1);
-  transition: font-size 1s cubic-bezier(0, 0.6, 0, 1);
-  font-weight: 600;
-  font-size: 18px;
-  color: #0465ac;
-  cursor: pointer;
-  margin-bottom: 12px;
-}
-.g-accordion .item .item-subtitle {
-  font-weight: 600;
-  font-size: 12px;
-  margin-bottom: 14px;
-  color: #999;
-}
-.g-accordion .item .item-content {
-  -webkit-transistion: all 1s cubic-bezier(0, 0.6, 0, 1);
-  transition: all 1s cubic-bezier(0, 0.6, 0, 1);
-  padding: 11px 0 25px 0;
-}
-.g-accordion .item.item-closed {
-  margin: 0;
-  min-height: 50px;
-  max-height: 70px;
-}
-.g-accordion .item.item-closed .item-dropdown::before {
-  content: "keyboard_arrow_down";
-}
-.g-accordion .item.item-closed .item-title {
-  font-size: 14px;
-}
-.g-accordion .item.item-closed .item-subtitle {
-  font-size: 12px;
-}
-.g-accordion .item.item-closed .item-content {
-  height: 0;
-  padding: 0;
-  overflow: hidden;
-}
+  color: #333; }
+  .g-accordion * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0; }
+  .g-accordion .main-title {
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 60px;
+    background-color: #fff;
+    box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.2);
+    height: 60px;
+    border-bottom: 1px solid #e4e6e5;
+    padding: 0 25px; }
+  .g-accordion .item {
+    -webkit-transistion: all 1s cubic-bezier(0, 0.6, 0, 1);
+    transition: all 1s cubic-bezier(0, 0.6, 0, 1);
+    max-height: 250px;
+    overflow: hidden;
+    margin: 30px 0px;
+    padding: 14px 25px 0px 25px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    background-color: #fff;
+    box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.2); }
+    .g-accordion .item .item-dropdown {
+      font-size: 26px;
+      cursor: pointer;
+      color: #0465ac;
+      float: right;
+      padding: 0 0 0 25px; }
+    .g-accordion .item .item-dropdown::before {
+      content: "keyboard_arrow_up"; }
+    .g-accordion .item .item-title {
+      -webkit-transistion: font-size 1s cubic-bezier(0, 0.6, 0, 1);
+      transition: font-size 1s cubic-bezier(0, 0.6, 0, 1);
+      font-weight: 600;
+      font-size: 18px;
+      color: #0465ac;
+      cursor: pointer;
+      margin-bottom: 12px; }
+    .g-accordion .item .item-subtitle {
+      font-weight: 600;
+      font-size: 12px;
+      margin-bottom: 14px;
+      color: #999; }
+    .g-accordion .item .item-content {
+      -webkit-transistion: all 1s cubic-bezier(0, 0.6, 0, 1);
+      transition: all 1s cubic-bezier(0, 0.6, 0, 1);
+      padding: 11px 0 25px 0; }
+  .g-accordion .item.item-closed {
+    margin: 0;
+    min-height: 50px;
+    max-height: 70px; }
+    .g-accordion .item.item-closed .item-dropdown::before {
+      content: "keyboard_arrow_down"; }
+    .g-accordion .item.item-closed .item-title {
+      font-size: 14px; }
+    .g-accordion .item.item-closed .item-subtitle {
+      font-size: 12px; }
+    .g-accordion .item.item-closed .item-content {
+      height: 0;
+      padding: 0;
+      overflow: hidden; }
