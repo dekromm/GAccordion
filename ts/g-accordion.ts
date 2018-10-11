@@ -88,7 +88,7 @@ class GAccordion {
             DOMcontainer.appendChild(maintitle);
         }
     
-        for(let currentPanel in options.panels){
+        for(let currentPanel of options.panels){
             let p: GPanel = new GPanel(currentPanel);
             DOMcontainer.appendChild(p.element);
         }

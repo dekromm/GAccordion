@@ -64,7 +64,8 @@ var GAccordion = /** @class */ (function () {
             });
             DOMcontainer.appendChild(maintitle);
         }
-        for (var currentPanel in options.panels) {
+        for (var _i = 0, _a = options.panels; _i < _a.length; _i++) {
+            var currentPanel = _a[_i];
             var p = new GPanel(currentPanel);
             DOMcontainer.appendChild(p.element);
         }
