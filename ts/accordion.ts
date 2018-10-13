@@ -89,11 +89,14 @@ class Panel {
 class AccordionModel {
     container: string  // id of DOM element to build onto
     mainTitle?: string
-    panels: [PanelModel]
+    panels: PanelModel[]
     static isValid(o: AccordionModel): Boolean {
         if (!o) return false;
         if (!o.container) return false;
         if (!o.panels) return false;
+        for(let p of o.panels){
+            if(!PanelModel.isValid(p)) return false;
+        }
         // TODO Check types
         // TODO investigate more transparent ways to do runtime type checking (https://github.com/fabiandev/ts-runtime)
         return true
