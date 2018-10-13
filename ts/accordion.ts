@@ -106,6 +106,7 @@ class AccordionModel {
 class Accordion {
     model: AccordionModel
     htmlElement: HTMLElement
+    panels: Panel[]
     constructor(model: AccordionModel, $domService: IDOMService) {
         if(!model){
             throw new Error("AccordionModel is null");
@@ -129,13 +130,15 @@ class Accordion {
             DOMcontainer.appendChild(maintitle);
         }
 
+        this.panels = [];
         for (let currentPanel of this.model.panels) {
             let p: Panel = new Panel(currentPanel, $domService);
             DOMcontainer.appendChild(p.htmlElement);
+            this.panels.push(p);
         }
+        this.htmlElement = DOMcontainer;
     }
 }
-
 
 class HTMLElementModel {
     tagname: string
