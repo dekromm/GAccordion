@@ -1,6 +1,6 @@
 {
     "files": [
-        "ts/g-accordion.ts"
+        "ts/accordion.ts"
     ],
     "compilerOptions": {
         "noImplicitAny": true,
