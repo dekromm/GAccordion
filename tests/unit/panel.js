@@ -13,7 +13,7 @@ describe("Panel", function () {
     })
     it("expects subtitled PanelModel in constructor", function () {
         try{
-            var p = new Panel(this.subtitledPanel,this.domService);
+            let p = new Panel(this.subtitledPanel,this.domService);
         }
         catch(e){
             fail(e);
@@ -21,27 +21,48 @@ describe("Panel", function () {
     });
     it("expects subtitleless PanelModel in constructor", function () {
         try{
-            var p = new Panel(this.subtitlelessPanel,this.domService);
+            let p = new Panel(this.subtitlelessPanel,this.domService);
         }
         catch(e){
             fail(e);
         }
     });
     it("refuses objects not PanelModel", function () {
-        var refused = {foo:'bar'};
+        let refused = {foo:'bar'};
         try{
-            var p = new Panel(refused,this.domService);
+            let p = new Panel(refused,this.domService);
         }
         catch(e){
             return; //test passed
         }
         fail("No exception raised");
     });
-    it('creates correct content',function(){
-        var p = new Panel(this.subtitledPanel,this.domService);
+    it('creates expected content',function(){
+        let panel = (new Panel(this.subtitledPanel,this.domService)).htmlElement;
+        expect(panel.tagName.toLowerCase()).toEqual('div');
+        expect(panel.classList).toContain('item');
+        expect(panel.classList).toContain('item-closed');
+        expect(panel.children).not.toBeUndefined();
+        let children = panel.children;
+        expect(children.length).toBeGreaterThanOrEqual(3);
+        let dropdown = children[0];
+        expect(dropdown.tagName.toLowerCase()).toEqual('i');
+        expect(dropdown.classList).toContain('item-dropdown');
+        let title = children[1];
+        expect(title.tagName.toLowerCase()).toEqual('h1');
+        expect(title.classList).toContain('item-title');
+        expect(title.innerHTML).toEqual(this.subtitledPanel.title);
+        let subtitle = children[2];
+        expect(subtitle.tagName.toLowerCase()).toEqual('h2');
+        expect(subtitle.classList).toContain('item-subtitle');
+        expect(subtitle.innerHTML).toEqual(this.subtitledPanel.subtitle);
+        let content = children[3];
+        expect(content.tagName.toLowerCase()).toEqual('div');
+        expect(content.classList).toContain('item-content');
+        expect(content.innerHTML).toEqual(this.subtitledPanel.content);
     });
     it('toggle with toggle method', function(){
-        var p = new Panel(this.subtitledPanel,this.domService);
+        let p = new Panel(this.subtitledPanel,this.domService);
         expect(p.htmlElement.classList).toContain('item-closed');
         p.toggle();
         expect(p.htmlElement.classList).not.toContain('item-closed');
@@ -49,7 +70,7 @@ describe("Panel", function () {
         expect(p.htmlElement.classList).toContain('item-closed');
     });
     it('toggle with dropdown button (class item-dropdown)', function(){
-        var p = (new Panel(this.subtitledPanel,this.domService)).htmlElement;
+        let p = (new Panel(this.subtitledPanel,this.domService)).htmlElement;
         expect(p.classList).toContain('item-closed');
         p.getElementsByClassName('item-dropdown')[0].onclick();
         expect(p.classList).not.toContain('item-closed');
@@ -57,7 +78,7 @@ describe("Panel", function () {
         expect(p.classList).toContain('item-closed');
     });
     it('toggle with title (class item-title)', function(){
-        var p = (new Panel(this.subtitledPanel,this.domService)).htmlElement;
+        let p = (new Panel(this.subtitledPanel,this.domService)).htmlElement;
         expect(p.classList).toContain('item-closed');
         p.getElementsByClassName('item-title')[0].onclick();
         expect(p.classList).not.toContain('item-closed');
