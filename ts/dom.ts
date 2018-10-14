@@ -14,6 +14,10 @@ interface IDOM {
  * @implements IDOM
  */
 class DOM implements IDOM {
+    /**
+     * returns the HTMLElement with the given id in the `document` DOM
+     * @param id 
+     */
     findById(id: string): HTMLElement {
         let e = document.getElementById(id);
         if (!e) throw new Error("Cant find `" + id + "` in document");
