@@ -62,7 +62,6 @@ var Panel = /** @class */ (function () {
     }
     Panel.prototype.setStatus = function (open) {
         this._isOpen = open;
-        var targetClass;
         if (this._isOpen) {
             this.htmlElement.classList.remove('item-closed');
         }
