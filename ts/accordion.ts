@@ -12,7 +12,7 @@ class PanelModel {
     }
 }
 
-class Panel {
+class GPanel {
     model: PanelModel
     private _isOpen: Boolean
     htmlElement: HTMLElement
@@ -103,11 +103,11 @@ class AccordionModel {
     }
 }
 
-class Accordion {
+class GAccordion {
     model: AccordionModel
 
     htmlElement: HTMLElement
-    panels: Panel[]
+    panels: GPanel[]
 
     constructor(model: AccordionModel, $domService: IDOM) {
         if (!model) {
@@ -134,7 +134,7 @@ class Accordion {
 
         this.panels = [];
         for (let currentPanel of this.model.panels) {
-            let p: Panel = new Panel(currentPanel);
+            let p: GPanel = new GPanel(currentPanel);
             DOMcontainer.appendChild(p.htmlElement);
             this.panels.push(p);
         }

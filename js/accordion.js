@@ -14,8 +14,8 @@ var PanelModel = /** @class */ (function () {
     };
     return PanelModel;
 }());
-var Panel = /** @class */ (function () {
-    function Panel(model) {
+var GPanel = /** @class */ (function () {
+    function GPanel(model) {
         if (!model) {
             throw new Error("PanelModel is null");
         }
@@ -60,7 +60,7 @@ var Panel = /** @class */ (function () {
         });
         this.htmlElement = domPanel;
     }
-    Panel.prototype.setStatus = function (open) {
+    GPanel.prototype.setStatus = function (open) {
         this._isOpen = open;
         if (this._isOpen) {
             this.htmlElement.classList.remove('item-closed');
@@ -69,11 +69,11 @@ var Panel = /** @class */ (function () {
             this.htmlElement.classList.add('item-closed');
         }
     };
-    Panel.prototype.isOpen = function () { return this._isOpen; };
-    Panel.prototype.toggle = function () {
+    GPanel.prototype.isOpen = function () { return this._isOpen; };
+    GPanel.prototype.toggle = function () {
         this.setStatus(!this._isOpen);
     };
-    return Panel;
+    return GPanel;
 }());
 var AccordionModel = /** @class */ (function () {
     function AccordionModel() {
@@ -96,8 +96,8 @@ var AccordionModel = /** @class */ (function () {
     };
     return AccordionModel;
 }());
-var Accordion = /** @class */ (function () {
-    function Accordion(model, $domService) {
+var GAccordion = /** @class */ (function () {
+    function GAccordion(model, $domService) {
         if (!model) {
             throw new Error("AccordionModel is null");
         }
@@ -121,13 +121,13 @@ var Accordion = /** @class */ (function () {
         this.panels = [];
         for (var _i = 0, _a = this.model.panels; _i < _a.length; _i++) {
             var currentPanel = _a[_i];
-            var p = new Panel(currentPanel);
+            var p = new GPanel(currentPanel);
             DOMcontainer.appendChild(p.htmlElement);
             this.panels.push(p);
         }
         this.htmlElement = DOMcontainer;
     }
-    return Accordion;
+    return GAccordion;
 }());
 var HTMLElementModel = /** @class */ (function () {
     function HTMLElementModel() {

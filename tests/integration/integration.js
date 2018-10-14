@@ -1,4 +1,4 @@
-describe('Accordion (integration)', function () {
+describe('GAccordion (integration)', function () {
     beforeAll(function () {
         this.dom = new DOM();
         this.options = {
@@ -20,7 +20,7 @@ describe('Accordion (integration)', function () {
         let container = document.createElement('div');
         container.id = this.options.container;
         document.body.appendChild(container);
-        this.accordion = new Accordion(this.options, this.dom);
+        this.accordion = new GAccordion(this.options, this.dom);
     });
     it('creates accordion in DOM', function () {
         let id = this.options.container;

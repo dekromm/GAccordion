@@ -5,7 +5,7 @@
     <title>Accordion demo page</title>
     <meta charset="UTF-8">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="./css/accordion.css">
+    <link rel="stylesheet" href="./css/g-accordion.css">
     <link rel="stylesheet" href="./css/styles.css">
     <script type="text/javascript" src="./js/accordion.js"></script>
 </head>
@@ -45,13 +45,13 @@
             }]
         };
         var dom = new DOM();
-        var accordion = new Accordion(options, dom);
+        var accordion = new GAccordion(options, dom);
         options.container = 'my-accordion2';
         options.mainTitle = 'Responsive';
-        var accordion = new Accordion(options, dom);
+        var accordion = new GAccordion(options, dom);
         options.container = 'my-accordion3';
         options.mainTitle = 'Responsive';
-        var accordion = new Accordion(options, dom);
+        var accordion = new GAccordion(options, dom);
     </script>
 </body>
 

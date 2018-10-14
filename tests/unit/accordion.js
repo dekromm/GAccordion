@@ -1,4 +1,4 @@
-describe('Accordion', function () {
+describe('GAccordion', function () {
     beforeAll(function () {
         this.domMock = {
             findById: function (id) { // Mocks DOM
@@ -26,7 +26,7 @@ describe('Accordion', function () {
     });
     it('has a constructor that throws exception if input parameter is not GAccordionOptions', function () {
         try {
-            let p = new Accordion({ foo: 'bar' }, this.domMock);
+            let p = new GAccordion({ foo: 'bar' }, this.domMock);
         }
         catch (e) {
             return; // test pass
@@ -34,12 +34,12 @@ describe('Accordion', function () {
         fail('Accordion created with corrupted AccordionModel');
     });
     it('creates correct content', function () {
-        let accordion = (new Accordion(this.options, this.domMock)).htmlElement;
+        let accordion = (new GAccordion(this.options, this.domMock)).htmlElement;
         expect(accordion.id).toEqual(this.options.container);
         expect(accordion.classList).toContain('g-accordion');
     });
     it('has independent panels', function () {
-        let accordion = new Accordion(this.options, this.domMock);
+        let accordion = new GAccordion(this.options, this.domMock);
         let panels = accordion.panels;
         let initialStatus = []
         for (let i = 0; i < panels.length; i++) {

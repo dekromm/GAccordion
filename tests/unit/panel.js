@@ -1,4 +1,4 @@
-describe("Panel", function () {
+describe("GPanel", function () {
     beforeAll(function(){
         this.subtitledPanel = {
             title: 'Title 1',
@@ -12,7 +12,7 @@ describe("Panel", function () {
     })
     it("expects subtitled PanelModel in constructor", function () {
         try{
-            let p = new Panel(this.subtitledPanel);
+            let p = new GPanel(this.subtitledPanel);
         }
         catch(e){
             fail(e);
@@ -20,7 +20,7 @@ describe("Panel", function () {
     });
     it("expects subtitleless PanelModel in constructor", function () {
         try{
-            let p = new Panel(this.subtitlelessPanel);
+            let p = new GPanel(this.subtitlelessPanel);
         }
         catch(e){
             fail(e);
@@ -29,7 +29,7 @@ describe("Panel", function () {
     it("refuses objects not PanelModel", function () {
         let refused = {foo:'bar'};
         try{
-            let p = new Panel(refused);
+            let p = new GPanel(refused);
         }
         catch(e){
             return; //test passed
@@ -37,7 +37,7 @@ describe("Panel", function () {
         fail("No exception raised");
     });
     it('creates as expected',function(){
-        let panel = new Panel(this.subtitledPanel);
+        let panel = new GPanel(this.subtitledPanel);
         expect(panel.isOpen()).toBe(false);
         let panelElement = panel.htmlElement;
         expect(panelElement.tagName.toLowerCase()).toEqual('div');
@@ -63,21 +63,21 @@ describe("Panel", function () {
         expect(content.innerHTML).toEqual(this.subtitledPanel.content);
     });
     it('toggle with toggle method', function(){
-        let panel = new Panel(this.subtitledPanel);
+        let panel = new GPanel(this.subtitledPanel);
         panel.toggle();
         expect(panel.htmlElement.classList).not.toContain('item-closed');
         panel.toggle();
         expect(panel.htmlElement.classList).toContain('item-closed');
     });
     it('toggle with dropdown button (class item-dropdown)', function(){
-        let panel = (new Panel(this.subtitledPanel)).htmlElement;
+        let panel = (new GPanel(this.subtitledPanel)).htmlElement;
         panel.getElementsByClassName('item-dropdown')[0].onclick();
         expect(panel.classList).not.toContain('item-closed');
         panel.getElementsByClassName('item-dropdown')[0].onclick();
         expect(panel.classList).toContain('item-closed');
     });
     it('toggle with title (class item-title)', function(){
-        let panel = (new Panel(this.subtitledPanel)).htmlElement;
+        let panel = (new GPanel(this.subtitledPanel)).htmlElement;
         panel.getElementsByClassName('item-title')[0].onclick();
         expect(panel.classList).not.toContain('item-closed');
         panel.getElementsByClassName('item-title')[0].onclick();
