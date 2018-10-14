@@ -4,7 +4,16 @@ GAccordion is a reusable accordion component that depends on accordion.js and ac
 
 ## Getting started
 
-Declare a `div` element and use the GAccordion constructor to actually make it an accordion.
+Add g-accordion.js and g-accordion.css to your page.
+
+    <head>
+        ...
+        <link rel="stylesheet" href="./css/g-accordion.css">
+        <script type="text/javascript" src="./js/g-accordion.js"></script>
+        ...
+    </head>
+
+Write a `div` element and use the GAccordion constructor to actually make it an accordion.
 
     
     <div id="my-accordion"></div>
@@ -12,7 +21,7 @@ Declare a `div` element and use the GAccordion constructor to actually make it a
         var accordion = new GAccordion(options, new DOM());
     </script>
 
-The `options` object (to feed the constructor with) represents the accordion content.
+The `options` object to feed the constructor with represents the accordion content.
 
     {
         container: 'my-accordion',
@@ -40,3 +49,4 @@ The `new DOM()` parameter is a wrapper for the DOM.
 1. error handling (both JS and HTML element overflow)
 2. max-height animation (should fix with js-measured height)
 3. chevron alignment
+4. typescript modules
