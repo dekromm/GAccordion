@@ -19,7 +19,6 @@ class Panel {
 
     private setStatus(open: Boolean): void {
         this._isOpen = open;
-        let targetClass: string;
         if (this._isOpen) {
             this.htmlElement.classList.remove('item-closed')
         } else {
@@ -41,6 +40,7 @@ class Panel {
             throw new Error("PanelModel is not valid");
         }
         this.model = model;
+        this._isOpen = false;
 
         let children = []
         let self = this;

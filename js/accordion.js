@@ -23,6 +23,7 @@ var Panel = /** @class */ (function () {
             throw new Error("PanelModel is not valid");
         }
         this.model = model;
+        this._isOpen = false;
         var children = [];
         var self = this;
         var dropdownButton = HTMLElementModel.createElement({
