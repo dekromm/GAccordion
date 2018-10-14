@@ -1,6 +1,5 @@
 describe("Panel", function () {
     beforeAll(function(){
-        this.domService = new DOMService()
         this.subtitledPanel = {
             title: 'Title 1',
             subtitle: 'subtitle 1',
@@ -13,7 +12,7 @@ describe("Panel", function () {
     })
     it("expects subtitled PanelModel in constructor", function () {
         try{
-            let p = new Panel(this.subtitledPanel,this.domService);
+            let p = new Panel(this.subtitledPanel);
         }
         catch(e){
             fail(e);
@@ -21,7 +20,7 @@ describe("Panel", function () {
     });
     it("expects subtitleless PanelModel in constructor", function () {
         try{
-            let p = new Panel(this.subtitlelessPanel,this.domService);
+            let p = new Panel(this.subtitlelessPanel);
         }
         catch(e){
             fail(e);
@@ -30,7 +29,7 @@ describe("Panel", function () {
     it("refuses objects not PanelModel", function () {
         let refused = {foo:'bar'};
         try{
-            let p = new Panel(refused,this.domService);
+            let p = new Panel(refused);
         }
         catch(e){
             return; //test passed
@@ -38,7 +37,7 @@ describe("Panel", function () {
         fail("No exception raised");
     });
     it('creates expected content',function(){
-        let panel = (new Panel(this.subtitledPanel,this.domService)).htmlElement;
+        let panel = (new Panel(this.subtitledPanel)).htmlElement;
         expect(panel.tagName.toLowerCase()).toEqual('div');
         expect(panel.classList).toContain('item');
         expect(panel.classList).toContain('item-closed');
@@ -62,7 +61,7 @@ describe("Panel", function () {
         expect(content.innerHTML).toEqual(this.subtitledPanel.content);
     });
     it('toggle with toggle method', function(){
-        let p = new Panel(this.subtitledPanel,this.domService);
+        let p = new Panel(this.subtitledPanel);
         expect(p.htmlElement.classList).toContain('item-closed');
         p.toggle();
         expect(p.htmlElement.classList).not.toContain('item-closed');
@@ -70,7 +69,7 @@ describe("Panel", function () {
         expect(p.htmlElement.classList).toContain('item-closed');
     });
     it('toggle with dropdown button (class item-dropdown)', function(){
-        let p = (new Panel(this.subtitledPanel,this.domService)).htmlElement;
+        let p = (new Panel(this.subtitledPanel)).htmlElement;
         expect(p.classList).toContain('item-closed');
         p.getElementsByClassName('item-dropdown')[0].onclick();
         expect(p.classList).not.toContain('item-closed');
@@ -78,7 +77,7 @@ describe("Panel", function () {
         expect(p.classList).toContain('item-closed');
     });
     it('toggle with title (class item-title)', function(){
-        let p = (new Panel(this.subtitledPanel,this.domService)).htmlElement;
+        let p = (new Panel(this.subtitledPanel)).htmlElement;
         expect(p.classList).toContain('item-closed');
         p.getElementsByClassName('item-title')[0].onclick();
         expect(p.classList).not.toContain('item-closed');

@@ -15,26 +15,23 @@ var PanelModel = /** @class */ (function () {
     return PanelModel;
 }());
 var Panel = /** @class */ (function () {
-    function Panel(model, $domService) {
+    function Panel(model) {
         if (!model) {
             throw new Error("PanelModel is null");
         }
         if (!PanelModel.isValid(model)) {
             throw new Error("PanelModel is not valid");
         }
-        if (!$domService) {
-            throw new Error("IDOMService dependency is null");
-        }
         this.model = model;
         var children = [];
         var self = this;
-        var dropdownButton = $domService.createElement({
+        var dropdownButton = HTMLElementModel.createElement({
             tagname: 'i',
             classList: ['material-icons', 'item-dropdown'],
             onclick: function () { self.toggle(); }
         });
         children.push(dropdownButton);
-        var title = $domService.createElement({
+        var title = HTMLElementModel.createElement({
             tagname: 'h1',
             classList: ['item-title'],
             innerHTML: this.model.title,
@@ -42,20 +39,20 @@ var Panel = /** @class */ (function () {
         });
         children.push(title);
         if (this.model.subtitle) {
-            var subtitle = $domService.createElement({
+            var subtitle = HTMLElementModel.createElement({
                 tagname: 'h2',
                 classList: ['item-subtitle'],
                 innerHTML: this.model.subtitle
             });
             children.push(subtitle);
         }
-        var content = $domService.createElement({
+        var content = HTMLElementModel.createElement({
             tagname: 'div',
             classList: ['item-content'],
             innerHTML: this.model.content
         });
         children.push(content);
-        var domPanel = $domService.createElement({
+        var domPanel = HTMLElementModel.createElement({
             tagname: 'div',
             classList: ['item', 'item-closed'],
             children: children
@@ -63,20 +60,18 @@ var Panel = /** @class */ (function () {
         this.htmlElement = domPanel;
     }
     Panel.prototype.setStatus = function (open) {
-        this.isOpen = open;
+        this._isOpen = open;
         var targetClass;
-        if (this.isOpen) {
+        if (this._isOpen) {
             this.htmlElement.classList.remove('item-closed');
         }
         else {
             this.htmlElement.classList.add('item-closed');
         }
     };
+    Panel.prototype.isOpen = function () { return this._isOpen; };
     Panel.prototype.toggle = function () {
-        this.setStatus(!this.isOpen);
-    };
-    Panel.prototype.getStatus = function () {
-        return this.isOpen;
+        this.setStatus(!this._isOpen);
     };
     return Panel;
 }());
@@ -90,6 +85,11 @@ var AccordionModel = /** @class */ (function () {
             return false;
         if (!o.panels)
             return false;
+        for (var _i = 0, _a = o.panels; _i < _a.length; _i++) {
+            var p = _a[_i];
+            if (!PanelModel.isValid(p))
+                return false;
+        }
         // TODO Check types
         // TODO investigate more transparent ways to do runtime type checking (https://github.com/fabiandev/ts-runtime)
         return true;
@@ -111,18 +111,21 @@ var Accordion = /** @class */ (function () {
         var DOMcontainer = $domService.findById(this.model.container);
         DOMcontainer.classList.add('g-accordion');
         if (this.model.mainTitle) {
-            var maintitle = $domService.createElement({
+            var maintitle = HTMLElementModel.createElement({
                 tagname: 'div',
                 classList: ['main-title'],
                 innerHTML: this.model.mainTitle
             });
             DOMcontainer.appendChild(maintitle);
         }
+        this.panels = [];
         for (var _i = 0, _a = this.model.panels; _i < _a.length; _i++) {
             var currentPanel = _a[_i];
-            var p = new Panel(currentPanel, $domService);
+            var p = new Panel(currentPanel);
             DOMcontainer.appendChild(p.htmlElement);
+            this.panels.push(p);
         }
+        this.htmlElement = DOMcontainer;
     }
     return Accordion;
 }());
@@ -138,18 +141,7 @@ var HTMLElementModel = /** @class */ (function () {
         // TODO investigate more transparent ways to do runtime type checking (https://github.com/fabiandev/ts-runtime)
         return true;
     };
-    return HTMLElementModel;
-}());
-var DOMService = /** @class */ (function () {
-    function DOMService() {
-    }
-    DOMService.prototype.findById = function (id) {
-        var e = document.getElementById(id);
-        if (!e)
-            throw new Error("Cant find `" + id + "` in document");
-        return e;
-    };
-    DOMService.prototype.createElement = function (model) {
+    HTMLElementModel.createElement = function (model) {
         var e = document.createElement(model.tagname);
         if (!e)
             throw new Error("Cant create `" + model.tagname + "` in document");
@@ -171,5 +163,16 @@ var DOMService = /** @class */ (function () {
         }
         return e;
     };
-    return DOMService;
+    return HTMLElementModel;
+}());
+var DOM = /** @class */ (function () {
+    function DOM() {
+    }
+    DOM.prototype.findById = function (id) {
+        var e = document.getElementById(id);
+        if (!e)
+            throw new Error("Cant find `" + id + "` in document");
+        return e;
+    };
+    return DOM;
 }());

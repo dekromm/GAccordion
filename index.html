@@ -44,14 +44,14 @@
                 content: '<p>HTML content 3</p>'
             }]
         };
-        var domService = new DOMService();
-        var accordion = new Accordion(options, domService);
+        var dom = new DOM();
+        var accordion = new Accordion(options, dom);
         options.container = 'my-accordion2';
         options.mainTitle = 'Responsive';
-        var accordion = new Accordion(options, domService);
+        var accordion = new Accordion(options, dom);
         options.container = 'my-accordion3';
         options.mainTitle = 'Responsive';
-        var accordion = new Accordion(options, domService);
+        var accordion = new Accordion(options, dom);
     </script>
 </body>
 
